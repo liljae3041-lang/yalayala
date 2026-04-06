@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: darkgreen;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+        #output {
+            width: 100%;
+            background-color: black;
+            color: lime;
+            padding: 10px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        #submitButton {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        #submitButton:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>1. 클릭 이벤트 테스트</h1>
+    <button id="clickButton">클릭하세요!</button>
+    
+    <hr>
+    
+    <h1>2. 실시간 입력 감지</h1>
+    <input type="text" id="inputField" placeholder="여기에 타이핑 해보세요">
+    <div id="output">콘솔을 확인하거나 여기에 출력됨</div>
+    
+    <hr>
+    
+    <h1>3. 폼 제출 (FormData)</h1>
+    <input type="text" id="name" placeholder="이름">
+    <input type="email" id="email" placeholder="이메일">
+    <button id="submitButton">데이터 제출</button>
+    
+    <script>
+        document.getElementById('clickButton').addEventListener('click', function() {
+            alert('클릭되었습니다!');
+        });
+        
+        document.getElementById('inputField').addEventListener('input', function() {
+            if (this.value === '') {
+                document.getElementById('output').textContent = '콘솔을 확인하거나 여기에 출력됨';
+            } else {
+                document.getElementById('output').textContent = this.value;
+            }
+        });
+        
+        document.getElementById('submitButton').addEventListener('click', function() {
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            
+            console.log('FormData submitted:');
+            for (let [key, value] of formData.entries()) {
+                console.log(key + ': ' + value);
+            }
+            
+            alert('데이터가 제출되었습니다!');
+        });
+    </script>
+</body>
+</html>
